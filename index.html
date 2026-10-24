@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f2b705">
+<title>Minifig Box Scanner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#f4f5f7; --surface:#ffffff; --ink:#16202e; --muted:#5d6878; --line:#dde1e7;
+  --stud:#f2b705; --stud-ink:#2a2000; --want:#d6361f; --ok:#1f8a4c; --warn:#b26a00;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Figtree",ui-sans-serif,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#10151d; --surface:#18202b; --ink:#e9edf2; --muted:#9aa5b4; --line:#2a3442;
+  --stud:#f5c22a; --want:#ff6b52; --ok:#4cc584; --warn:#f0a63a; color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-top:max(20px,env(safe-area-inset-top,0px));padding-bottom:max(40px,env(safe-area-inset-bottom,0px))}
+[hidden]{display:none!important}
+main{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+h1,h2{font-family:var(--display);margin:0;text-wrap:balance}
+h1{font-size:30px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+h2{font-size:17px;font-weight:600}
+.studs{display:inline-grid;grid-template-columns:repeat(2,9px);gap:3px;padding:5px;background:var(--stud);border-radius:4px}
+.studs i{width:9px;height:9px;border-radius:50%;background:var(--stud-ink);opacity:.18}
+.sub{color:var(--muted);margin:6px 0 0;max-width:62ch}
+.scan{display:flex;flex-direction:column;gap:12px}
+.btn{font:600 16px var(--body);border:0;border-radius:12px;padding:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+.btn-primary{background:var(--stud);color:var(--stud-ink)}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);padding:10px 14px;font-size:14px}
+.btn:focus-visible,input:focus-visible,select:focus-visible,.fig:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.cam{position:relative;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:3/4;max-height:62vh;width:100%}
+.cam video{width:100%;height:100%;object-fit:cover;display:block}
+.frame{position:absolute;left:50%;top:50%;width:52%;aspect-ratio:1;transform:translate(-50%,-50%);border:3px solid var(--stud);border-radius:12px;box-shadow:0 0 0 999px rgba(0,0,0,.35);transition:border-color .2s}
+.frame.hit{border-color:var(--ok)}
+.camtip{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;color:#fff;font-size:13px;text-align:center;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.camctl{position:absolute;top:10px;right:10px;display:flex;gap:6px}
+.camctl button{font:600 13px var(--body);border:0;border-radius:999px;padding:8px 12px;background:rgba(0,0,0,.55);color:#fff;cursor:pointer}
+.camctl button[aria-pressed="true"]{background:var(--stud);color:var(--stud-ink)}
+.manual{display:flex;gap:8px}
+.manual input{flex:1;min-width:0;font:500 18px var(--mono);letter-spacing:.08em;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.hint{font-size:13px;color:var(--muted);margin:0}
+.result{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.result.want{border:2px solid var(--want)}
+.tag{font:600 11px var(--body);text-transform:uppercase;letter-spacing:.08em;padding:4px 8px;border-radius:999px;align-self:flex-start}
+.tag.want{background:var(--want);color:#fff}
+.tag.got{background:var(--line);color:var(--ink)}
+.tag.unk{background:var(--warn);color:#fff}
+.fname{font:800 28px/1.1 var(--display)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted)}
+.meta b{font-family:var(--mono);font-weight:500;color:var(--ink)}
+.row,.learn{display:flex;gap:8px;flex-wrap:wrap}
+.learn select{flex:1;min-width:0;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+.busy{display:flex;align-items:center;gap:10px;color:var(--muted)}
+.spin{width:18px;height:18px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--stud);animation:s .8s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}.frame{transition:none}}
+section{display:flex;flex-direction:column;gap:10px}
+.sechead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.count{font:500 13px var(--mono);color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.fig{display:flex;align-items:center;gap:8px;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 14px var(--body);text-align:left;cursor:pointer;min-width:0}
+.fig span{min-width:0;overflow-wrap:anywhere}
+.dot{flex:none;width:14px;height:14px;border-radius:50%;border:2px solid var(--line)}
+.fig[data-state="want"]{border-color:var(--want)}
+.fig[data-state="want"] .dot{background:var(--want);border-color:var(--want)}
+.fig[data-state="have"]{opacity:.6}
+.fig[data-state="have"] .dot{background:var(--ok);border-color:var(--ok)}
+.legend{font-size:12px;color:var(--muted);margin:0}
+.log{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.log li{display:flex;justify-content:space-between;gap:10px;padding:8px 2px;border-bottom:1px solid var(--line);font-size:14px}
+.log li .c{font:500 12px var(--mono);color:var(--muted)}
+.log li.w{color:var(--want);font-weight:600}
+footer{font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1><span class="studs" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Minifig Box Scanner</h1>
+    <p class="sub" id="subline">Point the camera at the square code on the bottom of a box to see which figure is inside.</p>
+  </header>
+
+  <div class="scan">
+    <button class="btn btn-primary" id="startCam" type="button">Start scanning</button>
+    <div class="cam" id="cam" hidden>
+      <video id="video" playsinline muted></video>
+      <div class="frame" id="frame"></div>
+      <div class="camctl">
+        <button id="torch" type="button" aria-pressed="false" hidden>Light</button>
+        <button id="stopCam" type="button">Stop</button>
+      </div>
+      <div class="camtip">Fit the small square inside the frame. Cover the long barcode with a finger.</div>
+    </div>
+    <label class="btn btn-ghost" for="photo">Or take a photo instead
+      <input id="photo" type="file" accept="image/*" capture="environment" hidden>
+    </label>
+    <form class="manual" id="manualForm" autocomplete="off">
+      <input id="manual" inputmode="numeric" maxlength="40" placeholder="or type the 7-digit code" aria-label="Box code">
+      <button class="btn btn-ghost" type="submit">Look up</button>
+    </form>
+  </div>
+
+  <div id="result" class="result" aria-live="polite" hidden></div>
+
+  <div id="seriesWrap" style="display:flex;flex-direction:column;gap:22px"></div>
+  <p class="legend">Tap a figure to cycle: wanted (red) → have (green) → clear. Scans of wanted figures get flagged.</p>
+
+  <section aria-labelledby="hlog">
+    <div class="sechead"><h2 id="hlog">This trip</h2><button class="btn btn-ghost" id="clearLog" type="button">Clear</button></div>
+    <ul class="log" id="log"></ul>
+  </section>
+
+  <footer id="foot"></footer>
+</main>
+
+<script src="vendor/zxing.min.js"></script>
+<script src="series.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

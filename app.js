@@ -56,7 +56,7 @@ function showResult(p, opts = {}) {
   if (st === "want") resultEl.classList.add("want");
   const tag = st === "want" ? `<span class="tag want">On your want list</span>` : st === "have" ? `<span class="tag got">Already have</span>` : "";
   resultEl.innerHTML = `${opts.example ? `<span class="tag got">Example</span>` : ""}${tag}<div class="fname">${esc(f.name)}</div>
-    <div class="meta"><span>${esc(f.series.name)} · ${esc(f.series.set)}</span><span>with ${esc(f.extra)}</span></div>${meta}
+    <div class="meta"><span>${esc(f.series.name)} · ${esc(f.series.set)}</span>${f.extra ? `<span>with ${esc(f.extra)}</span>` : ""}</div>${meta}
     ${st !== "have" && !opts.example ? `<div class="row"><button class="btn btn-ghost" id="markHave" type="button">Bought it, mark as have</button></div>` : ""}`;
   const mh = $("markHave");
   if (mh) mh.onclick = () => { states[f.id] = "have"; save(); showResult(p); };
@@ -80,13 +80,26 @@ function renderLog() {
 }
 function save() { store.set("mf.states", states); renderGrids(); renderLog(); }
 
+// which series lists are expanded (per phone); default: series you're hunting, else the newest two
+let openSeries = store.get("mf.open", null);
+function isOpen(s, i) {
+  if (openSeries && s.key in openSeries) return openSeries[s.key];
+  return s.figures.some(f => states[f.id]) || i < 2;
+}
 function renderGrids() {
   const wrap = $("seriesWrap"); wrap.innerHTML = "";
-  SERIES.forEach(s => {
-    const sec = document.createElement("section");
+  SERIES.forEach((s, i) => {
+    const sec = document.createElement("details");
+    sec.className = "series";
+    sec.open = isOpen(s, i);
+    sec.addEventListener("toggle", () => {
+      openSeries = openSeries || {};
+      openSeries[s.key] = sec.open;
+      store.set("mf.open", openSeries);
+    });
     const have = s.figures.filter(f => states[f.id] === "have").length;
     const want = s.figures.filter(f => states[f.id] === "want").length;
-    sec.innerHTML = `<div class="sechead"><h2>${esc(s.name)} · ${esc(s.set)}</h2><span class="count">${have}/${s.figures.length} have · ${want} wanted</span></div><div class="grid"></div>`;
+    sec.innerHTML = `<summary class="sechead"><h2>${esc(s.name)} · ${esc(s.set)}</h2><span class="count">${have}/${s.figures.length} have${want ? ` · ${want} wanted` : ""}</span></summary><div class="grid"></div>`;
     const g = sec.querySelector(".grid");
     s.figures.forEach(f => {
       const b = document.createElement("button");
@@ -262,8 +275,8 @@ $("manualForm").addEventListener("submit", e => {
 $("clearLog").onclick = () => { log = []; store.set("mf.log", log); renderLog(); };
 
 // ---------- boot ----------
-$("subline").textContent = `Point the camera at the square code on the bottom of a box to see which figure is inside. Covers ${SERIES.map(s => `${s.name} (${s.set})`).join(", ")}.`;
-$("foot").innerHTML = SERIES.map(s => `<span>${esc(s.name)}: ${esc(s.source)}</span>`).join("") +
+$("subline").textContent = `Point the camera at the square code on the bottom of a box to see which figure is inside. Covers ${SERIES.length} series, listed below.`;
+$("foot").innerHTML = SERIES.map(s => `<span>${esc(s.name)}: ${esc(s.source)}, checked ${esc(s.checked)}</span>`).join("") +
   `<span>LEGO can change codes between batches. If a box isn't recognised, tag it once opened and this phone will know it.</span>`;
 renderGrids(); renderLog();
 showResult({ code: FIGS[0] ? FIGS[0].codes[0] : null }, { example: true });

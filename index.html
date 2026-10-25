@@ -65,6 +65,13 @@ h2{font-size:17px;font-weight:600}
 @media (prefers-reduced-motion:reduce){.spin{animation:none}.frame{transition:none}}
 section{display:flex;flex-direction:column;gap:10px}
 .sechead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.series{display:flex;flex-direction:column;border-bottom:1px solid var(--line);padding-bottom:12px}
+.series summary{cursor:pointer;list-style:none;padding:4px 0;flex-wrap:wrap}
+.series summary::-webkit-details-marker{display:none}
+.series summary h2::before{content:"▸";display:inline-block;width:1em;color:var(--muted);transition:transform .15s}
+.series[open] summary h2::before{transform:rotate(90deg)}
+.series[open] .grid{margin-top:8px}
+.series summary:focus-visible{outline:3px solid var(--ink);outline-offset:2px;border-radius:6px}
 .count{font:500 13px var(--mono);color:var(--muted)}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
 .fig{display:flex;align-items:center;gap:8px;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 14px var(--body);text-align:left;cursor:pointer;min-width:0}
@@ -111,7 +118,7 @@ footer{font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:
 
   <div id="result" class="result" aria-live="polite" hidden></div>
 
-  <div id="seriesWrap" style="display:flex;flex-direction:column;gap:22px"></div>
+  <div id="seriesWrap" style="display:flex;flex-direction:column;gap:12px"></div>
   <p class="legend">Tap a figure to cycle: wanted (red) → have (green) → clear. Scans of wanted figures get flagged.</p>
 
   <section aria-labelledby="hlog">

@@ -8,21 +8,21 @@ window.SERIES = [
     key: "s29",
     name: "Series 29",
     set: "71052",
-    source: "ColleX, cross-checked with BrickNav and Minifigure Scanner",
-    checked: "2026-10-18",
+    source: "ColleX, cross-checked with BrickNav, Minifigure Scanner and lego-scanner",
+    checked: "2026-11-15",
     figures: [
-      { id: "s29-1",  name: "Robot T. rex",       extra: "battery brick",          codes: ["6603331", "6605257"] },
-      { id: "s29-2",  name: "Marine Biologist",   extra: "clownfish, anemone",     codes: ["6603321", "6605247"] },
-      { id: "s29-3",  name: "Bionicle Cosplayer", extra: "Bionicle canister",      codes: ["6603325", "6605251"] },
-      { id: "s29-4",  name: "Monster Hunter",     extra: "gunblade, reward poster",codes: ["6603328", "6605254"] },
-      { id: "s29-5",  name: "Boba Cup Fan",       extra: "bubble tea costume",     codes: ["6603324", "6605250"] },
-      { id: "s29-6",  name: "Trash Monster",      extra: "pizza box, fishbone, fly", codes: ["6603330", "6605256"] },
-      { id: "s29-7",  name: "Chocolatier",        extra: "chocolate dragon",       codes: ["6603323", "6605249"] },
-      { id: "s29-8",  name: "Tuba Player",        extra: "tuba",                   codes: ["6603322", "6605248"] },
-      { id: "s29-9",  name: "Soccer Goalkeeper",  extra: "football",               codes: ["6603320", "6605246"] },
-      { id: "s29-10", name: "Cute Witch",         extra: "grey cat",               codes: ["6603329", "6605255"] },
-      { id: "s29-11", name: "Mysterious Ronin",   extra: "gold katana (Lloyd)",    codes: ["6603327", "6605253"] },
-      { id: "s29-12", name: "Unicorn Elf",        extra: "white unicorn",          codes: ["6603326", "6605252"] }
+      { id: "s29-1",  name: "Robot T. rex",       extra: "battery brick",          codes: ["6603331", "6605257", "6605270"] },
+      { id: "s29-2",  name: "Marine Biologist",   extra: "clownfish, anemone",     codes: ["6603321", "6605247", "6605260"] },
+      { id: "s29-3",  name: "Bionicle Cosplayer", extra: "Bionicle canister",      codes: ["6603325", "6605251", "6605264"] },
+      { id: "s29-4",  name: "Monster Hunter",     extra: "gunblade, reward poster",codes: ["6603328", "6605254", "6605267"] },
+      { id: "s29-5",  name: "Boba Cup Fan",       extra: "bubble tea costume",     codes: ["6603324", "6605250", "6605263"] },
+      { id: "s29-6",  name: "Trash Monster",      extra: "pizza box, fishbone, fly", codes: ["6603330", "6605256", "6605269"] },
+      { id: "s29-7",  name: "Chocolatier",        extra: "chocolate dragon",       codes: ["6603323", "6605249", "6605262"] },
+      { id: "s29-8",  name: "Tuba Player",        extra: "tuba",                   codes: ["6603322", "6605248", "6605261"] },
+      { id: "s29-9",  name: "Soccer Goalkeeper",  extra: "football",               codes: ["6603320", "6605246", "6605259"] },
+      { id: "s29-10", name: "Cute Witch",         extra: "grey cat",               codes: ["6603329", "6605255", "6605268"] },
+      { id: "s29-11", name: "Mysterious Ronin",   extra: "gold katana (Lloyd)",    codes: ["6603327", "6605253", "6605266"] },
+      { id: "s29-12", name: "Unicorn Elf",        extra: "white unicorn",          codes: ["6603326", "6605252", "6605265"] }
     ]
   },
   {
@@ -30,7 +30,7 @@ window.SERIES = [
     name: "Shrek Series",
     set: "71053",
     source: "ColleX, cross-checked with Brickbank, brick'em and Jay's Brick Blog",
-    checked: "2026-10-22",
+    checked: "2026-11-15",
     // first code = North America (Mexico), others = EU/UK (Czech Republic)
     figures: [
       { id: "sh-1",  name: "Thelonious",       extra: "microphone, cue card", codes: ["6634903", "6627608", "6634882"] },
@@ -51,43 +51,44 @@ window.SERIES = [
     key: "s28",
     name: "Series 28: Animals",
     set: "71051",
-    source: "ColleX, cross-checked with BrickNav and Minifigure Scanner",
-    checked: "2026-10-18",
-    // Crocodile's second code is disputed between sources (6584375 vs 6584376), so only one is listed
+    source: "ColleX, cross-checked with lego-scanner and Minifigure Scanner",
+    checked: "2026-11-15",
+    // first code = North America (R), others = EU/UK (S)
     figures: [
-      { id: "s28-1",  name: "Peacock Costume Fan",     extra: "sunflower",            codes: ["6584394", "6584381"] },
-      { id: "s28-2",  name: "Fluffy Cat Costume Fan",  extra: "ball of yarn",         codes: ["6584395", "6584382"] },
-      { id: "s28-3",  name: "Goldfish Costume Fan",    extra: "jar of fish food",     codes: ["6584392", "6584379"] },
-      { id: "s28-4",  name: "Monkey Costume Fan",      extra: "banana",               codes: ["6584398", "6584385"] },
-      { id: "s28-5",  name: "Frog Costume Fan",        extra: "bubble wand",          codes: ["6584390", "6584377"] },
-      { id: "s28-6",  name: "Koala Costume Fan",       extra: "boomerang",            codes: ["6584396", "6584383"] },
-      { id: "s28-7",  name: "Dalmatian Costume Fan",   extra: "frisbee",              codes: ["6584391", "6584378"] },
-      { id: "s28-8",  name: "Crocodile Costume Fan",   extra: "life ring, rubber duck", codes: ["6584389"] },
-      { id: "s28-9",  name: "Dolphin Costume Fan",     extra: "shell with a pearl",   codes: ["6584397", "6584384"] },
-      { id: "s28-10", name: "Cute Bunny Costume Fan",  extra: "Easter egg, basket",   codes: ["6584393", "6584380"] },
-      { id: "s28-11", name: "Lion Costume Fan",        extra: "chicken drumstick",    codes: ["6584388", "6584375"] },
-      { id: "s28-12", name: "Parrot Costume Fan",      extra: "snack box",            codes: ["6584387", "6584374"] }
+      { id: "s28-1",  name: "Peacock Costume Fan",     extra: "sunflower",            codes: ["6584394", "6584381", "6576503"] },
+      { id: "s28-2",  name: "Fluffy Cat Costume Fan",  extra: "ball of yarn",         codes: ["6584395", "6584382", "6576504"] },
+      { id: "s28-3",  name: "Goldfish Costume Fan",    extra: "jar of fish food",     codes: ["6584392", "6584379", "6576501"] },
+      { id: "s28-4",  name: "Monkey Costume Fan",      extra: "banana",               codes: ["6584398", "6584385", "6576507"] },
+      { id: "s28-5",  name: "Frog Costume Fan",        extra: "bubble wand",          codes: ["6584390", "6584377", "6576499"] },
+      { id: "s28-6",  name: "Koala Costume Fan",       extra: "boomerang",            codes: ["6584396", "6584383", "6576505"] },
+      { id: "s28-7",  name: "Dalmatian Costume Fan",   extra: "frisbee",              codes: ["6584391", "6584378", "6576500"] },
+      { id: "s28-8",  name: "Crocodile Costume Fan",   extra: "life ring, rubber duck", codes: ["6584389", "6584376", "6576498"] },
+      { id: "s28-9",  name: "Dolphin Costume Fan",     extra: "shell with a pearl",   codes: ["6584397", "6584384", "6576506"] },
+      { id: "s28-10", name: "Cute Bunny Costume Fan",  extra: "Easter egg, basket",   codes: ["6584393", "6584380", "6576502"] },
+      { id: "s28-11", name: "Lion Costume Fan",        extra: "chicken drumstick",    codes: ["6584388", "6584375", "6576497"] },
+      { id: "s28-12", name: "Parrot Costume Fan",      extra: "snack box",            codes: ["6584387", "6584374", "6576496"] }
     ]
   },
   {
     key: "spiderverse",
     name: "Spider-Man: Across the Spider-Verse",
     set: "71050",
-    source: "ColleX, cross-checked with BrickNav and Minifigure Scanner",
-    checked: "2026-10-20",
+    source: "ColleX, cross-checked with lego-scanner, BrickNav and Minifigure Scanner",
+    checked: "2026-11-15",
+    // 6615990-6616001 = North America; 65689(59-70), 65648(38-49) and 65689(47-58) = UK/EU runs
     figures: [
-      { id: "sv-1",  name: "Miles Morales",          extra: "",                     codes: ["6568959", "6615990"] },
-      { id: "sv-2",  name: "Spider-Punk",            extra: "guitar",               codes: ["6568964", "6615995"] },
-      { id: "sv-3",  name: "Prowler (Miles G.)",     extra: "vinyl record",         codes: ["6568963", "6615994"] },
-      { id: "sv-4",  name: "Spider-Gwen",            extra: "",                     codes: ["6568962", "6615993"] },
-      { id: "sv-5",  name: "Spider-Man 2099",        extra: "LYLA",                 codes: ["6568960", "6615991"] },
-      { id: "sv-6",  name: "Spider-Man India",       extra: "masked cat, teacup",   codes: ["6568965", "6615996"] },
-      { id: "sv-7",  name: "Cyborg Spider-Woman",    extra: "",                     codes: ["6568968", "6615999"] },
-      { id: "sv-8",  name: "Sun-Spider",             extra: "",                     codes: ["6568961", "6615992"] },
-      { id: "sv-9",  name: "Spider-Byte",            extra: "",                     codes: ["6568967", "6615998"] },
-      { id: "sv-10", name: "Peter B. Parker & Mayday", extra: "baby carrier",       codes: ["6568966", "6615997"] },
-      { id: "sv-11", name: "Web-Slinger",            extra: "masked foal, lasso",   codes: ["6568969", "6616000"] },
-      { id: "sv-12", name: "Werewolf Spider-Man",    extra: "",                     codes: ["6568970", "6616001"] }
+      { id: "sv-1",  name: "Miles Morales",          extra: "",                     codes: ["6568959", "6615990", "6564838", "6568947"] },
+      { id: "sv-2",  name: "Spider-Punk",            extra: "guitar",               codes: ["6568964", "6615995", "6564843", "6568952"] },
+      { id: "sv-3",  name: "Prowler (Miles G.)",     extra: "vinyl record",         codes: ["6568963", "6615994", "6564842", "6568951"] },
+      { id: "sv-4",  name: "Spider-Gwen",            extra: "",                     codes: ["6568962", "6615993", "6564841", "6568950"] },
+      { id: "sv-5",  name: "Spider-Man 2099",        extra: "LYLA",                 codes: ["6568960", "6615991", "6564839", "6568948"] },
+      { id: "sv-6",  name: "Spider-Man India",       extra: "masked cat, teacup",   codes: ["6568965", "6615996", "6564844", "6568953"] },
+      { id: "sv-7",  name: "Cyborg Spider-Woman",    extra: "",                     codes: ["6568968", "6615999", "6564847", "6568956"] },
+      { id: "sv-8",  name: "Sun-Spider",             extra: "",                     codes: ["6568961", "6615992", "6564840", "6568949"] },
+      { id: "sv-9",  name: "Spider-Byte",            extra: "",                     codes: ["6568967", "6615998", "6564846", "6568955"] },
+      { id: "sv-10", name: "Peter B. Parker & Mayday", extra: "baby carrier",       codes: ["6568966", "6615997", "6564845", "6568954"] },
+      { id: "sv-11", name: "Web-Slinger",            extra: "masked foal, lasso",   codes: ["6568969", "6616000", "6564848", "6568957"] },
+      { id: "sv-12", name: "Werewolf Spider-Man",    extra: "",                     codes: ["6568970", "6616001", "6564849", "6568958"] }
     ]
   },
   {
@@ -116,7 +117,7 @@ window.SERIES = [
     name: "Dungeons & Dragons",
     set: "71047",
     source: "ColleX, cross-checked with Jay's Brick Blog and Minifigure Scanner (EU boxes only; some 2024 batches carry wrong codes)",
-    checked: "2026-10-20",
+    checked: "2026-11-15",
     figures: [
       { id: "dnd-1",  name: "Dwarf Barbarian",       extra: "", codes: ["6502839", "6506740"] },
       { id: "dnd-2",  name: "Gith Warlock",          extra: "", codes: ["6502842", "6506743"] },
@@ -137,7 +138,7 @@ window.SERIES = [
     name: "Series 26: Space",
     set: "71046",
     source: "ColleX, cross-checked with BrickNav, Minifigure Scanner and Jay's Brick Blog",
-    checked: "2026-10-20",
+    checked: "2026-11-15",
     // first two codes = EU/UK (Czech, S), third = North America (Mexico, R)
     figures: [
       { id: "s26-1",  name: "Spacewalking Astronaut",    extra: "", codes: ["6484696", "6484916", "6484928"] },

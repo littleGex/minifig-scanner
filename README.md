@@ -59,3 +59,21 @@ Only boxes from Series 25 onward carry the large Data Matrix code; the first 7 d
 ## Running locally
 
 Any static server, e.g. `python3 -m http.server`. The camera needs HTTPS or `localhost`.
+
+## Sources
+
+The box codes are compiled and cross-checked from these community sites. Thanks to everyone who scans boxes and publishes what they find:
+
+- [ColleX](https://www.collexstash.com/) code guides and collection pages
+- [BrickNav](https://bricknav.com/)
+- [Minifigure Scanner](https://minifigurescanner.com/)
+- [lego-scanner](https://lego-scanner.leopard.in.ua/) ([source](https://github.com/le0pard/lego-scanner))
+- [Jay's Brick Blog](https://jaysbrickblog.com/)
+- [Brickbank](https://brickbank.app/)
+- [brick'em](https://brickem.io/)
+
+Each series in `series.js` names the sources it was checked against. LEGO® is a trademark of the LEGO Group, which does not sponsor or endorse this project.
+
+## Licence
+
+Public domain under [the Unlicense](LICENSE): use the code and the box-code list however you like, no credit needed. The bundled ZXing library (`vendor/zxing.min.js`) keeps its own Apache 2.0 licence.
